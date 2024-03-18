@@ -1,26 +1,33 @@
-import Alamofire
-import SWXMLHash
+import UIKit
 
-// Define the RSS feed URL
-let rssFeedURL = "https://news.google.com/rss"
-
-// Fetch the RSS feed using Alamofire
-AF.request(rssFeedURL).responseData { response in
-    switch response.result {
-    case .success(let data):
-        // Parse the XML data using SWXMLHash
-        let xml = SWXMLHash.parse(data)
+class ViewController: UIViewController, XMLParserDelegate {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        // Extract the news articles from the XML
-        if let items = xml["rss"]["channel"]["item"].all {
-            for item in items {
-                let title = item["title"].element?.text
-                let description = item["description"].element?.text
-                let link = item["link"].element?.text
-                // Process the extracted data as needed
+        if let url = URL(string: "https://news.google.com/rss") {
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if let data = data {
+                    let parser = XMLParser(data: data)
+                    parser.delegate = self
+                    parser.parse()
+                }
             }
+            task.resume()
         }
-    case .failure(let error):
-        print("Error fetching RSS feed: \(error)")
+    }
+    
+    // MARK: - XMLParserDelegate methods
+    
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        // Implement how you want to handle different XML elements
+    }
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        // Implement how you want to handle the content of XML elements
+    }
+    
+    func parserDidEndDocument(_ parser: XMLParser) {
+        // Parsing of the RSS feed is complete
     }
 }
