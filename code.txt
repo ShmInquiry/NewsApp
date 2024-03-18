@@ -1,0 +1,26 @@
+import Alamofire
+import SWXMLHash
+
+// Define the RSS feed URL
+let rssFeedURL = "https://news.google.com/rss"
+
+// Fetch the RSS feed using Alamofire
+AF.request(rssFeedURL).responseData { response in
+    switch response.result {
+    case .success(let data):
+        // Parse the XML data using SWXMLHash
+        let xml = SWXMLHash.parse(data)
+        
+        // Extract the news articles from the XML
+        if let items = xml["rss"]["channel"]["item"].all {
+            for item in items {
+                let title = item["title"].element?.text
+                let description = item["description"].element?.text
+                let link = item["link"].element?.text
+                // Process the extracted data as needed
+            }
+        }
+    case .failure(let error):
+        print("Error fetching RSS feed: \(error)")
+    }
+}
