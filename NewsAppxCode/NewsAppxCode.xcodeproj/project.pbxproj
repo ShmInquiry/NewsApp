@@ -90,6 +90,7 @@
 		05C44C262BA85C6200B86BC9 = {
 			isa = PBXGroup;
 			children = (
+				05C44C5D2BA86BE600B86BC9 /* SpaceNewsProj */,
 				05C44C312BA85C6200B86BC9 /* NewsAppxCode */,
 				05C44C432BA85C6500B86BC9 /* NewsAppxCodeTests */,
 				05C44C4E2BA85C6500B86BC9 /* NewsAppxCodeUITests */,
@@ -113,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				05C44C322BA85C6200B86BC9 /* NewsAppxCodeApp.swift */,
-				05C44C342BA85C6200B86BC9 /* ContentView.swift */,
 				05C44C362BA85C6500B86BC9 /* Assets.xcassets */,
 				05C44C3B2BA85C6500B86BC9 /* Info.plist */,
 				05C44C382BA85C6500B86BC9 /* Preview Content */,
@@ -147,6 +147,30 @@
 			path = NewsAppxCodeUITests;
 			sourceTree = "<group>";
 		};
+		05C44C5D2BA86BE600B86BC9 /* SpaceNewsProj */ = {
+			isa = PBXGroup;
+			children = (
+				05C44C5F2BA86C0C00B86BC9 /* Views */,
+				05C44C5E2BA86BFC00B86BC9 /* API */,
+			);
+			path = SpaceNewsProj;
+			sourceTree = "<group>";
+		};
+		05C44C5E2BA86BFC00B86BC9 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		05C44C5F2BA86C0C00B86BC9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				05C44C342BA85C6200B86BC9 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		512DA21408EB5E55E40FCE2B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,7 +181,6 @@
 				1837DA59E1428DC2306A43C3 /* Pods-NewsAppxCodeTests.debug.xcconfig */,
 				B570002B8856DDB9A71D1923 /* Pods-NewsAppxCodeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
