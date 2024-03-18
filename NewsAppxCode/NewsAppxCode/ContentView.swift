@@ -6,13 +6,16 @@
 //
 
 import SwiftUI
-import UIKit
 
-class ViewController: UIViewController, XMLParserDelegate {
+struct ContentView: View {
+    var body: some View {
+        Text("Hello, World!")
+            .onAppear {
+                fetchRSSFeed()
+            }
+    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    func fetchRSSFeed() {
         if let url = URL(string: "https://news.google.com/rss") {
             let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if let data = data {
@@ -24,9 +27,10 @@ class ViewController: UIViewController, XMLParserDelegate {
             task.resume()
         }
     }
-    
-    // MARK: - XMLParserDelegate methods
-    
+}
+
+extension ContentView: XMLParserDelegate {
+    // Implement XMLParserDelegate methods here
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         // Implement how you want to handle different XML elements
     }
@@ -40,10 +44,11 @@ class ViewController: UIViewController, XMLParserDelegate {
     }
 }
 
-
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+@main
+struct NewsAppxCodeApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
     }
 }
