@@ -35,7 +35,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         view.backgroundColor = .systemBackground
         
+        // Adding a "+" button to the navigation bar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddButton))
+        
         fetchTopStories()
+    }
+    
+    @objc private func didTapAddButton(){
+        // Present news alternatives
+        presentNewsSourcesList()
+    }
+    
+    private func presentNewsSourcesList(){
+        // List of resources created and presented
+        // Handle user selection to switch to selected news source
     }
     
     private func fetchTopStories() {
@@ -98,7 +111,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
-    
-    
 }
-
