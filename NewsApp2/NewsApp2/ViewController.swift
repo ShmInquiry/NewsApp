@@ -49,6 +49,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     private func presentNewsSourcesList(){
         // List of resources created and presented
         // Handle user selection to switch to selected news source
+         let alertController = UIAlertController(title: "Select News Source", message: nil, preferredStyle: .actionSheet)
+        
+        // Add actions for different news sources
+        let techCrunchAction = UIAlertAction(title: "TechCrunch", style: .default) { [weak self] _ in
+            self?.fetchNews(from: APICaller.Constats.topHeadlinesURL)
+        }
+        
+        let wsjAction = UIAlertAction(title: "The Wall Street Journal", style: .default) { [weak self] _ in
+            self?.fetchNews(from: APICaller.Constats.secondHeadlinesURL)
+        }
+        
+        let appleAction = UIAlertAction(title: "Apple News", style: .default) { [weak self] _ in
+            self?.fetchNews(from: APICaller.Constats.thirdHeadlinesURL)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        // Add the actions to the alert controller
+        alertController.addAction(techCrunchAction)
+        alertController.addAction(wsjAction)
+        alertController.addAction(appleAction)
+        alertController.addAction(cancelAction)
+        
+        // Present the alert controller
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func fetchNews(from url: URL) {
+        // Fetch news from the specified API endpoint
+        // Update the articles and viewModels based on the fetched news
+        // Reload the table view to display the new news
     }
     
     private func fetchTopStories() {
