@@ -1,5 +1,0 @@
-Target dependency graph (3 targets)
-Pods-NewsAppxCode in Pods
-Pods-NewsAppxCode-NewsAppxCodeUITests in Pods
-Pods-NewsAppxCodeTests in Pods, depends on:
-Pods-NewsAppxCode in Pods (explicit)
