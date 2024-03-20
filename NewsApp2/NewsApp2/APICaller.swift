@@ -10,6 +10,13 @@ import Foundation
 
 final class APICaller {
     static let shared = APICaller()
+
+    var baseURL: String = "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=274099a79e6d4a679542c030ea58adc2"
+
+    
+    func updateBaseURL(with baseURL: String) {
+        self.baseURL = baseURL
+    }
     
     struct Constats {
         static let topHeadlinesURL  = URL (string:
