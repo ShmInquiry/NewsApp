@@ -38,6 +38,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Adding a "+" button to the navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddButton))
         
+        // Adfd pull to refresh control
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshNews), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
+        fetchTopStories()
+    }
+    
+    @objc private func refreshNews() {
+        // Fetch news agin
         fetchTopStories()
     }
     
@@ -79,17 +89,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
    private func fetchNews(from url: URL) {
         // Determine which API endpoint to use based on the URL
-        if url == APICaller.Constants.topHeadlinesURL {
+        if url == APICaller.Constats.topHeadlinesURL {
             APICaller.shared.getTopStories { [weak self] result in
                 // Handle the result
                 // ...
             }
-        } else if url == APICaller.Constants.secondHeadlinesURL {
+        } else if url == APICaller.Constats.secondHeadlinesURL {
             APICaller.shared.getTopStories2 { [weak self] result in
                 // Handle the result
                 // ...
             }
-        } else if url == APICaller.Constants.thirdHeadlinesURL {
+        } else if url == APICaller.Constats.thirdHeadlinesURL {
             APICaller.shared.getTopStories3 { [weak self] result in
                 // Handle the result
                 // ...
@@ -111,6 +121,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 })
                 
                 DispatchQueue.main.async {
+                    self?.tableView.refreshControl?.endRefreshing() // stop refresh anim
                     self?.tableView.reloadData()
                 }
             case .failure(let error):
