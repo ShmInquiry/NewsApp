@@ -77,27 +77,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         present(alertController, animated: true, completion: nil)
     }
     
-    private func fetchNews(from url: URL) {
-    // Fetch news from the specified API endpoint
-    APICaller.shared.getTopStories { [weak self] result in
-        switch result {
-            case .success(let articles):
-                // Update the articles and viewModels based on the fetched news
-                self?.articles = articles
-                self?.viewModels = articles.compactMap({
-                    NewsTableViewCellViewModel(
-                        title: $0.title,
-                        subtitle: $0.description ?? "No Description",
-                        imageURL: URL(string: $0.urlToImage ?? "")
-                    )
-                })
-                
-                DispatchQueue.main.async {
-                    // Reload the table view to display the new news
-                    self?.tableView.reloadData()
-                }
-            case .failure(let error):
-                print("Failed to fetch news articles: \(error)")
+   private func fetchNews(from url: URL) {
+        // Determine which API endpoint to use based on the URL
+        if url == APICaller.Constants.topHeadlinesURL {
+            APICaller.shared.getTopStories { [weak self] result in
+                // Handle the result
+                // ...
+            }
+        } else if url == APICaller.Constants.secondHeadlinesURL {
+            APICaller.shared.getTopStories2 { [weak self] result in
+                // Handle the result
+                // ...
+            }
+        } else if url == APICaller.Constants.thirdHeadlinesURL {
+            APICaller.shared.getTopStories3 { [weak self] result in
+                // Handle the result
+                // ...
             }
         }
     }
