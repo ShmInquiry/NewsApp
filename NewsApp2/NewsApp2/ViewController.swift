@@ -52,7 +52,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          let alertController = UIAlertController(title: "Select News Source", message: nil, preferredStyle: .actionSheet)
         
         // Add actions for different news sources
-        /* let techCrunchAction = UIAlertAction(title: "TechCrunch", style: .default) { [weak self] _ in
+        let techCrunchAction = UIAlertAction(title: "TechCrunch", style: .default) { [weak self] _ in
             self?.fetchNews(from: APICaller.Constats.topHeadlinesURL)
         }
         
@@ -72,14 +72,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alertController.addAction(wsjAction)
         alertController.addAction(appleAction)
         alertController.addAction(cancelAction)
-        */
+        
         // Present the alert controller
         present(alertController, animated: true, completion: nil)
     }
     
-    /*private func fetchNews(from url: URL) {
+    private func fetchNews(from url: URL) {
     // Fetch news from the specified API endpoint
-    APICaller.shared.getNewsFromResource(url: url) { [weak self] result in
+    APICaller.shared.Source(url: url) { [weak self] result in
         switch result {
             case .success(let articles):
                 // Update the articles and viewModels based on the fetched news
@@ -100,7 +100,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print("Failed to fetch news articles: \(error)")
             }
         }
-    }*/
+    }
         
     private func fetchTopStories() {
         APICaller.shared.getTopStories{ [weak self] result in
