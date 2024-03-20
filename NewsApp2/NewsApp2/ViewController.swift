@@ -53,15 +53,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // Add actions for different news sources
         let techCrunchAction = UIAlertAction(title: "TechCrunch", style: .default) { [weak self] _ in
-            self?.fetchNews(from: APICaller.Constats.topHeadlinesURL ?? URL(string: "")!)
+            self?.fetchNews(from: APICaller.Constats.topHeadlinesURL!)
         }
         
         let wsjAction = UIAlertAction(title: "The Wall Street Journal", style: .default) { [weak self] _ in
-            self?.fetchNews(from: APICaller.Constats.secondHeadlinesURL ?? URL(string: "")!)
+            self?.fetchNews(from: APICaller.Constats.secondHeadlinesURL!)
         }
         
         let appleAction = UIAlertAction(title: "Apple News", style: .default) { [weak self] _ in
-            self?.fetchNews(from: APICaller.Constats.thirdHeadlinesURL ?? URL(string: "")!)
+            self?.fetchNews(from: APICaller.Constats.thirdHeadlinesURL!)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
