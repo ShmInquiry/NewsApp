@@ -26,6 +26,11 @@ final class APICaller {
     
     private init() {}
 
+    func updateBaseURL(with baseURL: String) {
+        // Update the base URL for the API calls
+        // This method should be implemented in the APICaller class
+    }
+
     public func getTopStories(completion: @escaping (Result<[Article], Error>) -> Void)
     {
         guard let url = Constats.topHeadlinesURL else {

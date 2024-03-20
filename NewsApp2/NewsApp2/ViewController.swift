@@ -17,7 +17,7 @@ import SafariServices
 
 
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewsSourcesViewControllerDelegate {
 
     private let tableView: UITableView = {
         let table = UITableView()
@@ -46,7 +46,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @objc private func didTapAddButton(){
         // Present news alternatives
-        presentNewsSourcesList()
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let newsSourcesViewController = storyboard.instantiateViewController(withIdentifier: "NewsSourcesViewController") as! NewsSourcesViewController
+    newsSourcesViewController.delegate = self
+    present(newsSourcesViewController, animated: true, completion: nil)
+    }
+
+
+    func didSelectNewsSource(_ newsSource: NewsSource) {
+        // Update the news source in the APICaller
+        APICaller.shared.updateBaseURL(with: newsSource.baseURL)
+        
+        // Fetch the top stories for the selected news source
+        fetchTopStories()
     }
     
     private func presentNewsSourcesList(){
@@ -85,12 +97,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // Present the alert controller
         present(alertController, animated: true, completion: nil)
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let newsSourcesViewController = storyboard.instantiateViewController(withIdentifier: "NewsSourcesViewController") as! NewsSourcesViewController
+        newsSourcesViewController.delegate = self
+        present(newsSourcesViewController, animated: true, completion: nil)
+
     }
     
     private func fetchNews(from url: URL) {
         // Fetch news from the specified API endpoint
         // Update the articles and viewModels based on the fetched news
         // Reload the table view to display the new news
+    }
+    
+    protocol NewsSourcesViewControl: AnyObject {
+    func didSelectNewsSource(_ newsSource: NewsSource)
     }
     
     private func fetchTopStories() {
@@ -154,9 +176,3 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return 150
     }
 }
-
-
-protocol NewsSourcesViewControl: AnyObject {
-    func didSelectNewsSource(_ newsSource: NewsSource)
-}
-
