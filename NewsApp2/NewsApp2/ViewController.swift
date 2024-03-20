@@ -16,7 +16,7 @@ import SafariServices
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    private lzet tableView: UITableView = {
+    private let tableView: UITableView = {
         let table = UITableView()
         table.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.identifier)
         
@@ -52,7 +52,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          let alertController = UIAlertController(title: "Select News Source", message: nil, preferredStyle: .actionSheet)
         
         // Add actions for different news sources
-        let techCrunchAction = UIAlertAction(title: "TechCrunch", style: .default) { [weak self] _ in
+        /* let techCrunchAction = UIAlertAction(title: "TechCrunch", style: .default) { [weak self] _ in
             self?.fetchNews(from: APICaller.Constats.topHeadlinesURL)
         }
         
@@ -67,16 +67,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         // Add the actions to the alert controller
+        
         alertController.addAction(techCrunchAction)
         alertController.addAction(wsjAction)
         alertController.addAction(appleAction)
         alertController.addAction(cancelAction)
-        
+        */
         // Present the alert controller
         present(alertController, animated: true, completion: nil)
     }
     
-    private func fetchNews(from url: URL) {
+    /*private func fetchNews(from url: URL) {
     // Fetch news from the specified API endpoint
     APICaller.shared.getNewsFromResource(url: url) { [weak self] result in
         switch result {
@@ -99,7 +100,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print("Failed to fetch news articles: \(error)")
             }
         }
-    }
+    }*/
         
     private func fetchTopStories() {
         APICaller.shared.getTopStories{ [weak self] result in
