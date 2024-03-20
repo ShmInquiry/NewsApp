@@ -53,15 +53,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // Add actions for different news sources
         let techCrunchAction = UIAlertAction(title: "TechCrunch", style: .default) { [weak self] _ in
-            self?.fetchNews(from: APICaller.Constats.topHeadlinesURL)
+            self?.fetchNews(from: APICaller.Constats.topHeadlinesURL ?? URL(string: "")!)
         }
         
         let wsjAction = UIAlertAction(title: "The Wall Street Journal", style: .default) { [weak self] _ in
-            self?.fetchNews(from: APICaller.Constats.secondHeadlinesURL)
+            self?.fetchNews(from: APICaller.Constats.secondHeadlinesURL ?? URL(string: "")!)
         }
         
         let appleAction = UIAlertAction(title: "Apple News", style: .default) { [weak self] _ in
-            self?.fetchNews(from: APICaller.Constats.thirdHeadlinesURL)
+            self?.fetchNews(from: APICaller.Constats.thirdHeadlinesURL ?? URL(string: "")!)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -79,7 +79,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     private func fetchNews(from url: URL) {
     // Fetch news from the specified API endpoint
-    APICaller.shared.Source(url: url) { [weak self] result in
+    APICaller.shared.getTopStories { [weak self] result in
         switch result {
             case .success(let articles):
                 // Update the articles and viewModels based on the fetched news
