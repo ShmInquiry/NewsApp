@@ -89,7 +89,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
    private func fetchNews(from url: URL) {
         // Determine which API endpoint to use based on the URL
-        if url == APICaller.Constats.topHeadlinesURL {
+        /*if url == APICaller.Constats.topHeadlinesURL {
             APICaller.shared.getTopStories { [weak self] result in
                 // Handle the result
                 // ...
@@ -104,7 +104,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 // Handle the result
                 // ...
             }
+        }*/
+    
+    APICaller.shared.fetchNews(from: url) {[weak self] result in
+        switch result {
+        case .success(let articles):
+            self?.articles = articles
+            self?.viewModels = articles.map { article in
+                if let imageURLString = article.urlToImage, let imageURL =  URL(string: imageURLString) { return
+                NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: imageURL)
+                } else {
+                    return
+                    NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: nil)
+                }
+            }
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        case .failure(let error):
+            print("Error fetching: \(error)")
         }
+    }
     }
         
     private func fetchTopStories() {

@@ -103,6 +103,23 @@ final class APICaller {
         }
         task.resume()
     }
+    
+    public func fetchNews(from url: URL, completion: @escaping (Result<[Article], Error>) -> Void) {
+        let task = URLSession.shared.dataTask(with: url) {
+            data, _, error in
+            if let error = error {
+                completion(.failure(error))
+            } else if let data = data {
+                do {
+                    let result = try JSONDecoder().decode(APIResponse.self, from: data)
+                    completion(.success(result.articles))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+        }
+        task.resume()
+    }
 }
 
 // Models
