@@ -175,7 +175,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         // let viewModel = viewModels[indexPath.row]
-        let article = articles[indexPath.row]
+       /* let article = articles[indexPath.row]
         
         guard let url = URL(string: article.url ?? "") else {
             return
@@ -183,6 +183,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let vc = SFSafariViewController(url : url)
         present(vc, animated: true)
+     */
+    let selectedArticle = articles[indexPath.row]
+
+    // Display news details in a separate view
+    let newsDetailsViewController = NewsDetailsViewController(article: selectedArticle)
+    navigationController?.pushViewController(newsDetailsViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
