@@ -5,6 +5,7 @@
 //  Created by Sh.M on 18/03/2024.
 //
 
+import SwiftUI
 import UIKit
 import SafariServices
 
@@ -13,6 +14,8 @@ import SafariServices
 // Api caller
 // Open the news stories
 // Search for news stories
+
+
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -35,7 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         view.backgroundColor = .systemBackground
         
-        // Adding a "+" button to the navigation bar
+        // Adding a add "+" button to the navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddButton))
         
         fetchTopStories()
@@ -53,16 +56,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // Add actions for different news sources
         let techCrunchAction = UIAlertAction(title: "TechCrunch", style: .default) { [weak self] _ in
-            self?.fetchNews(from: APICaller.Constats.topHeadlinesURL)
+            guard let url = APICaller.Constats.topHeadlinesURL else {
+                return
+            }
+            self?.fetchNews(from: url)
         }
         
         let wsjAction = UIAlertAction(title: "The Wall Street Journal", style: .default) { [weak self] _ in
-            self?.fetchNews(from: APICaller.Constats.secondHeadlinesURL)
+            guard let url = APICaller.Constats.secondHeadlinesURL else {
+                return
+            }
+            self?.fetchNews(from: url)
         }
         
         let appleAction = UIAlertAction(title: "Apple News", style: .default) { [weak self] _ in
-            self?.fetchNews(from: APICaller.Constats.thirdHeadlinesURL)
-        }
+            guard let url = APICaller.Constats.thirdHeadlinesURL else {
+                return
+            }
+            self?.fetchNews(from: url)        }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -143,3 +154,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return 150
     }
 }
+
+
+protocol NewsSourcesViewControl: AnyObject {
+    func didSelectNewsSource(_ newsSource: NewsSource)
+}
+

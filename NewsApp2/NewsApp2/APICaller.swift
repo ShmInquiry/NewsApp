@@ -122,3 +122,9 @@ struct Article: Codable{
 struct Source: Codable {
     let name: String
 }
+
+
+struct NewsSource: Codable {
+    let name: String
+    let baseURL: String
+}
