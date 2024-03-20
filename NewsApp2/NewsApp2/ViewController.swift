@@ -187,6 +187,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let selectedArticle = articles[indexPath.row]
 
     // Create a new instance of NewsDetailsViewController
+    let newsDetailsViewController = NewsDetailsViewController(article: selectedArticle)
+    
+    // Present the NewsDetailsViewController
+    navigationController?.pushViewController(newsDetailsViewController, animated: true)
+
+
+    /*// Create a new instance of NewsDetailsViewController
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     guard let newsDetailsViewController = storyboard.instantiateViewController(identifier: "NewsDetailsViewController") as? NewsDetailsViewController else {
         // Display news details in a separate view
@@ -197,7 +204,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // Present the NewsDetailsViewController
     navigationController?.pushViewController(newsDetailsViewController, animated: true)
     }
-    /*// Display news details in a separate view
+    /// Display news details in a separate view
     let newsDetailsViewController = NewsDetailsViewController(article: selectedArticle)
     navigationController?.pushViewController(newsDetailsViewController, animated: true)
     }*/
