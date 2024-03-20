@@ -10,13 +10,6 @@ import Foundation
 
 final class APICaller {
     static let shared = APICaller()
-
-    var baseURL: String = "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=274099a79e6d4a679542c030ea58adc2"
-
-    
-    func updateBaseURL(with baseURL: String) {
-        self.baseURL = baseURL
-    }
     
     struct Constats {
         static let topHeadlinesURL  = URL (string:
@@ -32,11 +25,6 @@ final class APICaller {
     }
     
     private init() {}
-
-    func updateBaseURL(with baseURL: String) {
-        // Update the base URL for the API calls
-        // This method should be implemented in the APICaller class
-    }
 
     public func getTopStories(completion: @escaping (Result<[Article], Error>) -> Void)
     {
@@ -133,10 +121,4 @@ struct Article: Codable{
 
 struct Source: Codable {
     let name: String
-}
-
-
-struct NewsSource: Codable {
-    let name: String
-    let baseURL: String
 }
