@@ -186,10 +186,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
      */
     let selectedArticle = articles[indexPath.row]
 
-    // Display news details in a separate view
-    let newsDetailsViewController = NewsDetailsViewController(article: selectedArticle)
+    // Create a new instance of NewsDetailsViewController
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    guard let newsDetailsViewController = storyboard.instantiateViewController(identifier: "NewsDetailsViewController") as? NewsDetailsViewController else {
+        // Display news details in a separate view
+        let newsDetailsViewController = NewsDetailsViewController(article: selectedArticle)
+        navigationController?.pushViewController(newsDetailsViewController, animated: true)
+        return
+        }
+    // Present the NewsDetailsViewController
     navigationController?.pushViewController(newsDetailsViewController, animated: true)
     }
+    /*// Display news details in a separate view
+    let newsDetailsViewController = NewsDetailsViewController(article: selectedArticle)
+    navigationController?.pushViewController(newsDetailsViewController, animated: true)
+    }*/
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
