@@ -208,7 +208,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let newsDetailsViewController = NewsDetailsViewController(article: selectedArticle)
     navigationController?.pushViewController(newsDetailsViewController, animated: true)
     }*/
-    
+   }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
