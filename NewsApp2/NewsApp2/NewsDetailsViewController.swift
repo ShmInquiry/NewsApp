@@ -22,32 +22,54 @@ class NewsDetailsViewController: UIViewController {
         super.viewDidLoad()
         // Configure UI components and layout
         
-        let title = UILabel(frame: CGRect(origin: CGPoint(x: 10,y: 145), size: CGSize(width: 370, height: 270)))
+        let title = UILabel(frame: CGRect(origin: CGPoint(x: 10,y: 360), size: CGSize(width: 370, height: 270)))
         title.numberOfLines = 175
         title.font = .systemFont(ofSize: 30, weight: .semibold)
         
         title.textColor = .black
         title.text = article.title
+//        title.textAlignment = AnchorPoint()
+                
+        
+        let description = UILabel(frame: CGRect(origin: CGPoint(x: 20,y: 450), size: CGSize(width: 350, height: 470)))
+        description.numberOfLines = 5000
+        description.font = .systemFont(ofSize: 20, weight: .light)
+        description.textColor = .black
+        description.text = article.content
 //        label.textAlignment =
         
-        view.addSubview(title)
+        let publishedDate = UILabel(frame: CGRect(origin: CGPoint(x: 20,y: 550), size: CGSize(width: 350, height: 470)))
+        publishedDate.font = .systemFont(ofSize: 20, weight: .light)
+        publishedDate.textColor = .black
+        publishedDate.text = article.publishedAt
         
-        let subtitle = UILabel(frame: CGRect(origin: CGPoint(x: 20,y: 195), size: CGSize(width: 350, height: 470)))
-        subtitle.numberOfLines = 175
-        subtitle.font = .systemFont(ofSize: 20, weight: .light)
+        let Author = UILabel(frame: CGRect(origin: CGPoint(x: 50,y: 360), size: CGSize(width: 350, height: 470)))
+        Author.font = .systemFont(ofSize: 20, weight: .light)
+        Author.textColor = .black
+        Author.text = article.author
         
-        subtitle.textColor = .black
-        subtitle.text = article.description
-//        label.textAlignment =
+        let LinkUrl = UILabel(frame: CGRect(origin: CGPoint(x: 20,y: 440), size: CGSize(width: 350, height: 880)))
+        LinkUrl.font = .systemFont(ofSize: 20, weight: .light)
+        LinkUrl.textColor = .blue
+//        LinkUrl.toggleUnderline(Any?.self)
+        LinkUrl.text = article.url
         
-        view.addSubview(subtitle)
-        
-        
-        
-        newsImageView.frame = CGRect(origin: CGPoint(x: 20,y: 120), size: CGSize(width: 200, height: 200))
+        newsImageView.frame = CGRect(origin: CGPoint(x: 0,y: 80), size: CGSize(width: 428, height: 325))
         
         view.addSubview(newsImageView)
         configure()
+        
+        view.addSubview(title)
+        
+        view.addSubview(publishedDate)
+        view.addSubview(Author)
+        
+        view.addSubview(description)
+        
+        view.addSubview(LinkUrl)
+
+
+        
     }
     
     func configure() {
@@ -73,6 +95,7 @@ class NewsDetailsViewController: UIViewController {
         imageView.layer.masksToBounds = true
         imageView.backgroundColor = .secondarySystemBackground
         imageView.contentMode = .scaleAspectFill
+        imageView.contentScaleFactor = .leastNormalMagnitude
         return imageView
     }()
 }
