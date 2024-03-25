@@ -188,6 +188,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     // Create a new instance of NewsDetailsViewController
     let newsDetailsViewController = NewsDetailsViewController(article: selectedArticle)
+//    let newsDetailsViewController = NewsDetailsViewController(article: selectedArticle, titleV: title ?? "", subtitle: description ?? "")
     
     // Present the NewsDetailsViewController
     navigationController?.pushViewController(newsDetailsViewController, animated: true)
