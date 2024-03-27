@@ -4,7 +4,7 @@
 //
 //  Created by Sh.M on 18/03/2024.
 //
-
+import Swift
 import UIKit
 import SafariServices
 
@@ -13,6 +13,7 @@ import SafariServices
 // Api caller
 // Open the news stories
 // Search for news stories
+
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -38,7 +39,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Adding a "+" button to the navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddButton))
         
-        // Adfd pull to refresh control
+        // Add pull to refresh control
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshNews), for: .valueChanged)
         tableView.refreshControl = refreshControl
@@ -112,10 +113,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self?.articles = articles
             self?.viewModels = articles.map { article in
                 if let imageURLString = article.urlToImage, let imageURL =  URL(string: imageURLString) { return
-                NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: imageURL)
+                    NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: imageURL, author: article.author ?? "")
                 } else {
                     return
-                    NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: nil)
+                        NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: nil, author: article.author ?? "")
                 }
             }
             DispatchQueue.main.async {
@@ -136,7 +137,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     NewsTableViewCellViewModel(
                         title: $0.title,
                         subtitle: $0.description ?? "No Description",
-                        imageURL: URL(string: $0.urlToImage ?? "")
+                        imageURL: URL(string: $0.urlToImage ?? ""), author: $0.author ?? "Unknown Author"
                     )
                 })
                 
@@ -210,7 +211,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     navigationController?.pushViewController(newsDetailsViewController, animated: true)
     }*/
    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            navigationController?.navigationBar.prefersLargeTitles = true
+
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = .cyan
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
+            navigationController?.navigationBar.tintColor = .white
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.compactAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        tabBarController?.tabBar.barTintColor = UIColor.brown
+        
         return 150
     }
 }
