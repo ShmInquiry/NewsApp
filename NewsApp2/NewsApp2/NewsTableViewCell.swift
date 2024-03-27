@@ -5,7 +5,11 @@
 //  Created by Sh.M on 19/03/2024.
 //
 
+import Foundation
 import UIKit
+
+let date = Date()
+let dateFormatter = DateFormatter()
 
 class NewsTableViewCellViewModel {
     let title: String
@@ -13,6 +17,10 @@ class NewsTableViewCellViewModel {
     let imageURL: URL?
     var imageData: Data? = nil
     let author: String?
+    let publishedAt: Date
+    
+//    dateFormatter.dateFormat = "dd/MM/yy"
+//    dateFormatter.string(from: date)
     
     init(
         title: String,
@@ -60,17 +68,27 @@ class NewsTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 14, weight: .medium)
         return label
     }()
+    
+    private let timePosted: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 14, weight: .light)
+        return label
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = UIColor(white: 0.9, alpha: 0.9)
-        
+        contentView.backgroundColor = .white
+        backgroundColor = .systemGray5
+
         contentView.addSubview(newsTitleLabel)
         contentView.addSubview(subTitleLabel)
         contentView.addSubview(newsImageView)
         contentView.addSubview(authorLabel)
+        contentView.addSubview(timePosted)
+
 
     }
     
@@ -91,24 +109,33 @@ class NewsTableViewCell: UITableViewCell {
             x: 20,
             y: 60,
             width: contentView.frame.size.width - 185,
-            height: 70)
+            height: 50)
         
         authorLabel.frame = CGRect(
             x: 10,
-            y: 90,
+            y: 70,
             width: contentView.frame.size.width - 185,
             height: 100)
 //        authorLabel.textAlignment = .rightAnchor
         
+        timePosted.frame = CGRect(
+            x: 10,
+            y: 70,
+            width: contentView.frame.size.width - 185,
+            height: 100)
+        
         newsImageView.frame = CGRect(
-            x: contentView.frame.size.width-160,
-            y: 5,
-            width: 150,
-            height: contentView.frame.size.height - 10)
+            x: contentView.frame.size.width - 163,
+            y: 7,
+            width: 140,
+            height: contentView.frame.size.height - 30)
         
         // Make the cells rounded
-        contentView.layer.cornerRadius = contentView.frame.size.height / 6
+        contentView.layer.cornerRadius = contentView.frame.size.height / 12
         contentView.clipsToBounds = true
+                    
+        // Add empty space between cells/ Gaps
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
     }
 
     override func prepareForReuse() {
@@ -116,6 +143,7 @@ class NewsTableViewCell: UITableViewCell {
         newsTitleLabel.text = nil
         subTitleLabel.text = nil
         authorLabel.text = nil
+        timePosted.text = nil
         newsImageView.image = nil
     }
     
@@ -123,6 +151,8 @@ class NewsTableViewCell: UITableViewCell {
         newsTitleLabel.text = viewModel.title
         subTitleLabel.text = viewModel.subtitle
         authorLabel.text = viewModel.author
+        timePosted.text = viewModel.publishedAt
+
 
         
         //image

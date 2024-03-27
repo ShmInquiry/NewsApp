@@ -49,8 +49,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         fetchTopStories()
         
         tableView.separatorStyle = .none
-        tableView.separatorInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-        
     }
     
     @objc private func refreshNews() {
@@ -180,12 +178,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         cell.configure(with: viewModels[indexPath.row])
         
-        if indexPath.row != tableView.numberOfRows(inSection: indexPath.section) - 1 {
-            let spacing = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 8))
-            cell.contentView.subviews.last?.bottomAnchor.constraint(equalTo: spacing.bottomAnchor, constant: -8).isActive = true
-            tableView.addSubview(spacing)
-        }
-        
         return cell
     }
     
@@ -243,6 +235,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            let headerView = UIView()
+            headerView.backgroundColor = .systemGray5
+            return headerView
+        }
+        
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         tabBarController?.tabBar.barTintColor = UIColor.brown
