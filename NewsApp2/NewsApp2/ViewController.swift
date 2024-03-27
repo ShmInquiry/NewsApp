@@ -117,10 +117,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self?.articles = articles
             self?.viewModels = articles.map { article in
                 if let imageURLString = article.urlToImage, let imageURL =  URL(string: imageURLString) { return
-                    NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: imageURL, author: article.author ?? "")
+                    NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: imageURL, author: article.author ?? "", publishedAt: date ?? "")
                 } else {
                     return
-                        NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: nil, author: article.author ?? "")
+                        NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: nil, author: article.author ?? "", publishedAt: date ?? "")
                 }
             }
             DispatchQueue.main.async {
@@ -141,7 +141,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     NewsTableViewCellViewModel(
                         title: $0.title,
                         subtitle: $0.description ?? "No Description",
-                        imageURL: URL(string: $0.urlToImage ?? ""), author: $0.author ?? "Unknown Author"
+                        imageURL: URL(string: $0.urlToImage ?? ""), author: $0.author ?? "Unknown Author",
+                        publishedAt: $0.publishedAt
                     )
                 })
                 

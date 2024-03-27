@@ -1,7 +1,6 @@
 import UIKit
 import SwiftUI
 
-
 enum ConstraintType {
     case top, leading, trailing, bottom, width, height
 }
@@ -90,7 +89,10 @@ class NewsDetailsViewController: UIViewController {
         let publishedDate = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 15,y: view.frame.size.width  / 0.7), size: CGSize(width: 350, height: 470)))
         publishedDate.font = .systemFont(ofSize: 20, weight: .light)
         publishedDate.textColor = .black
-        publishedDate.text = article.publishedAt
+        
+//        let dateFormatter = DateFormatter()
+
+        publishedDate.text = dateFormatter.string(from: article.publishedAt)
         
         let Author = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 15,y: view.frame.size.width  / 1.55), size: CGSize(width: 350, height: 470)))
         Author.font = .systemFont(ofSize: 20, weight: .medium)

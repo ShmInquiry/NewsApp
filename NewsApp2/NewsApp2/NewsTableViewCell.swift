@@ -26,12 +26,14 @@ class NewsTableViewCellViewModel {
         title: String,
         subtitle: String,
         imageURL: URL?,
-        author: String?
+        author: String?,
+        publishedAt: Date
     ) {
         self.title = title
         self.subtitle = subtitle
         self.imageURL = imageURL
         self.author = author
+        self.publishedAt = publishedAt
     }
 }
 
@@ -151,7 +153,10 @@ class NewsTableViewCell: UITableViewCell {
         newsTitleLabel.text = viewModel.title
         subTitleLabel.text = viewModel.subtitle
         authorLabel.text = viewModel.author
-        timePosted.text = viewModel.publishedAt
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH"
+        timePosted.text = dateFormatter.string(from: viewModel.publishedAt)
 
 
         
