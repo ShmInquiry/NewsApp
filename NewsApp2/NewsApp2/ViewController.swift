@@ -29,12 +29,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Set the background gray
+        view.backgroundColor = UIColor(white: 0.9, alpha: 0.9)
         // Do any additional setup after loading the view.
         title = "News"
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        view.backgroundColor = .systemBackground
+        // view.backgroundColor = .systemBackground
         
         // Adding a "+" button to the navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddButton))
@@ -45,6 +47,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.refreshControl = refreshControl
         
         fetchTopStories()
+        
+        tableView.separatorStyle = .none
+        tableView.separatorInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+        
     }
     
     @objc private func refreshNews() {
@@ -232,5 +238,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tabBarController?.tabBar.barTintColor = UIColor.brown
         
         return 150
+    }
+    
+//    func tableView(_ tableView: UITableView, viewForFooterSection section: Int) -> UIView?{
+//        let footerView = UIView()
+//        footerView.backgroundColor = .clear
+//        footerView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50)
+//        return footerView
+//    }
+    
+    func tableView(_ tableView: UITableView, heightRowAt indexPath: IndexPath) -> CGFloat{
+        return UITableView.automaticDimension
     }
 }

@@ -64,6 +64,9 @@ class NewsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        contentView.backgroundColor = UIColor(white: 0.9, alpha: 0.9)
+        
         contentView.addSubview(newsTitleLabel)
         contentView.addSubview(subTitleLabel)
         contentView.addSubview(newsImageView)
@@ -102,6 +105,10 @@ class NewsTableViewCell: UITableViewCell {
             y: 5,
             width: 150,
             height: contentView.frame.size.height - 10)
+        
+        // Make the cells rounded
+        contentView.layer.cornerRadius = contentView.frame.size.height / 6
+        contentView.clipsToBounds = true
     }
 
     override func prepareForReuse() {
