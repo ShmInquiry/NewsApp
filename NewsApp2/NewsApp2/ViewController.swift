@@ -160,6 +160,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
+        
+        tableView.layoutMargins = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+        
     }
     
     
@@ -176,6 +179,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 fatalError()
             }
         cell.configure(with: viewModels[indexPath.row])
+        
+        if indexPath.row != tableView.numberOfRows(inSection: indexPath.section) - 1 {
+            let spacing = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 8))
+            cell.contentView.subviews.last?.bottomAnchor.constraint(equalTo: spacing.bottomAnchor, constant: -8).isActive = true
+            tableView.addSubview(spacing)
+        }
+        
         return cell
     }
     
