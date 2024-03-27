@@ -116,13 +116,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         case .success(let articles):
             self?.articles = articles
             self?.viewModels = articles.map { article in
-                if let imageURLString = article.urlToImage, let imageURL =  URL(string: imageURLString) { return
+                if let imageURLString = article.urlToImage, let imageURL =  URL(string: imageURLString) {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "HH:mm:ssZ"
+                    if let date = dateFormatter.date(from: article.publishedAt){
+                        dateFormatter.dateFormat = "HH"
+                        let formattedDate = dateFormatter.string(from: date)
+                        return
                     NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: imageURL, author: article.author ?? "", publishedAt: date ?? "")
-                } else {
-                    return
-                        NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: nil, author: article.author ?? "", publishedAt: date ?? "")
+                    }
                 }
-            }
+                else {
+                    return
+                        NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: nil, author: article.author ?? "", publishedAt: nil)
+                }
+            },compactMap { $0 }
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
