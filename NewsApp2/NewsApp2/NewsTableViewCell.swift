@@ -17,7 +17,7 @@ class NewsTableViewCellViewModel {
     let imageURL: URL?
     var imageData: Data? = nil
     let author: String?
-    let publishedAt: Date
+    let publishedAt: String
     
 //    dateFormatter.dateFormat = "dd/MM/yy"
 //    dateFormatter.string(from: date)
@@ -27,7 +27,7 @@ class NewsTableViewCellViewModel {
         subtitle: String,
         imageURL: URL?,
         author: String?,
-        publishedAt: Date
+        publishedAt: String
     ) {
         self.title = title
         self.subtitle = subtitle
@@ -154,9 +154,9 @@ class NewsTableViewCell: UITableViewCell {
         subTitleLabel.text = viewModel.subtitle
         authorLabel.text = viewModel.author
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH"
-        timePosted.text = dateFormatter.string(from: viewModel.publishedAt)
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "HH"
+//        timePosted.text = dateFormatter.string(from: viewModel.publishedAt)
 
 
         

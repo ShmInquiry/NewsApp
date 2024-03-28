@@ -39,7 +39,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // view.backgroundColor = .systemBackground
         
         // Adding a "+" button to the navigation bar
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks , target: self, action: #selector(didTapAddButton))
         
         // Add pull to refresh control
         let refreshControl = UIRefreshControl()
@@ -117,20 +117,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self?.articles = articles
             self?.viewModels = articles.map { article in
                 if let imageURLString = article.urlToImage, let imageURL =  URL(string: imageURLString) {
+                    print("Article publishedAt: \(article.publishedAt)")
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "HH:mm:ssZ"
-                    if let date = dateFormatter.date(from: article.publishedAt){
-                        dateFormatter.dateFormat = "HH"
-                        let formattedDate = dateFormatter.string(from: date)
-                        return
-                    NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: imageURL, author: article.author ?? "", publishedAt: date ?? "")
-                    }
+//                    if let date = dateFormatter.date(from: article.publishedAt) {
+//                        let dateString = dateFormatter.string(from: date)
+//                    }
+                    return NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: imageURL, author: article.author ?? "", publishedAt: article.publishedAt)
+
                 }
                 else {
-                    return
-                        NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: nil, author: article.author ?? "", publishedAt: nil)
+                    return NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: nil, author: article.author ?? "", publishedAt: article.publishedAt)
                 }
-            },compactMap { $0 }
+            }.compactMap { $0 }
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }

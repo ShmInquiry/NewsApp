@@ -92,8 +92,8 @@ class NewsDetailsViewController: UIViewController {
         
 //        let dateFormatter = DateFormatter()
 
-        publishedDate.text = dateFormatter.string(from: article.publishedAt)
-        
+        publishedDate.text = article.publishedAt
+    
         let Author = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 15,y: view.frame.size.width  / 1.55), size: CGSize(width: 350, height: 470)))
         Author.font = .systemFont(ofSize: 20, weight: .medium)
         Author.textColor = .black
