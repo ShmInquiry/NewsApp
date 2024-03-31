@@ -3,11 +3,11 @@
 This project is a news app developed in Swift using Xcode. It is my second project and aims to provide a user-friendly interface for accessing the latest news and updates. The app is designed to be visually appealing and easy to use, making it convenient for users to stay informed about current events. 💪
 
 ## Table of Contents
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-- [Screenshots](#screenshots)
-- [Acknowledgements](#acknowledgements)
+- [Features](##features)
+- [Technologies Used](##technologies-used)
+- [Getting Started](##getting-started)
+- [Screenshots](##screenshots)
+- [Acknowledgements](##acknowledgements)
 
 ## Features 🎉
 - Browse and read the latest news articles 📰
