@@ -1,3 +1,12 @@
+<div align="center">
+      <h1> <img src="https://i.postimg.cc/WpQzgxVh/plugin-Icon.png" width="80px"><br/>gruvbox.nvim</h1>
+     </div>
+<p align="center"> 
+      <a href="https://social.vivaldi.net/@MoonOfTheKindred" target="_blank"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/ellisonleao?style=for-the-badge" style="vertical-align:center" ></a>
+      <a href="#"><img alt="Made with SWIFT" src="https://img.shields.io/badge/Made%20with%20Lua-blueviolet.svg?style=for-the-badge&logo=lua" style="vertical-align:center" /></a>
+</p>
+
+
 # News App 📰
 
 This project is a news app developed in Swift using Xcode. It is my second project and aims to provide a user-friendly interface for accessing the latest news and updates. The app is designed to be visually appealing and easy to use, making it convenient for users to stay informed about current events. 💪
