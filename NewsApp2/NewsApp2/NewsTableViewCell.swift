@@ -68,6 +68,7 @@ class NewsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.textAlignment = .left
         return label
     }()
     
@@ -75,6 +76,7 @@ class NewsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 14, weight: .light)
+        label.textAlignment = .left
         return label
     }()
 
@@ -112,7 +114,7 @@ class NewsTableViewCell: UITableViewCell {
             height: 50)
         
         authorLabel.frame = CGRect(
-            x: 130,
+            x: 140,
             y: 70,
             width: contentView.frame.size.width - 185,
             height: 100)
@@ -123,9 +125,7 @@ class NewsTableViewCell: UITableViewCell {
             y: 70,
             width: contentView.frame.size.width - 185,
             height: 100)
-//        dateFormatter.dateFormat = "HH"
-//        timePosted.text = dateFormatter.string(from: Date())
-        
+      
         
         newsImageView.frame = CGRect(
             x: contentView.frame.size.width - 163,
