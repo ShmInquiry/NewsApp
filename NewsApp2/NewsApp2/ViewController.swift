@@ -15,7 +15,18 @@ import SafariServices
 // Search for news stories
 
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+    
+    //Add search bar:
+    private let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Search News"
+        return searchBar
+    }()
+    
+    private var isSearching = false
+    private var filteredViewModels = [NewsTableViewCellViewModel]()
+    
 
     private let tableView: UITableView = {
         let table = UITableView()
@@ -42,7 +53,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks , target: self, action: #selector(didTapAddButton))
         
         //Add search bar
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search , target: self, action: #selector(didTapSearchButton))
+        navigationItem.titleView = searchBar
+        searchBar.delegate = self
         
         // Add pull to refresh control
         let refreshControl = UIRefreshControl()
@@ -68,9 +80,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Present news alternatives
         //SearchInAllNewsSourcesList()
     }
-    
-    //private func searchAllNewsSourcesList(){}
-    
+        
     private func presentNewsSourcesList(){
         // List of resources created and presented
         // Handle user selection to switch to selected news source
@@ -181,12 +191,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    
-    // Table views
-    func tableView(_ tableview: UITableView, numberOfRowsInSection section : Int) -> Int {
-        return viewModels.count
+    // MARK: - UISearchBarDelegate
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        if searchText.isEmpty{
+            isSearching = false
+            tableView.reloadData()
+        } else {
+            isSearching = true
+            filteredViewModels = viewModels.filter{
+                $0.title.lowercased().contains(searchText.lowercased())
+            }
+            tableView.reloadData()
+        }
     }
     
+    // Table views: updated 39th commit, returns count of eithers viewModels or filteredModels
+    func tableView(_ tableview: UITableView, numberOfRowsInSection section : Int) -> Int {
+        return isSearching ? filteredViewModels.count : viewModels.count
+        //return viewModels.count
+    }
+    
+    //39th commit update: cellForRowAt uses filteredViewModels when search in progress
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: NewsTableViewCell.identifier,
@@ -194,10 +219,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ) as? NewsTableViewCell else {
                 fatalError()
             }
-        cell.configure(with: viewModels[indexPath.row])
-        
+        let viewModel = isSearching ? filteredViewModels[indexPath.row] : viewModels[indexPath.row]
+        cell.configure(with: viewModel)
+        //        cell.configure(with: viewModels[indexPath.row])
+        //        cell.configure(with: viewModels[indexPath.row])
+
         return cell
-    }
+            }
     
    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
