@@ -35,7 +35,6 @@ This project is a news app developed in Swift using Xcode. It is my second proje
 ## Technologies Used 💻
 - Swift 🐍
 - Xcode 🛠️
-- [Add any other relevant technologies used in the project]
 
 ## Getting Started 🚀
 To get started with the app, follow these steps:
@@ -49,7 +48,8 @@ Here is a demo of the App:
 ![Menu Interface 1](demoImages/MenuInterface1.png)
 
 ## Acknowledgements 🙏
-[Add any acknowledgements or credits here]
+Credits:
+- [MoonOfTheKindred](https://social.vivaldi.net/@MoonOfTheKindred)
 
 Feel free to reach out if you have any questions or feedback about the app! 📢
 
