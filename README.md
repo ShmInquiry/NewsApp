@@ -3,7 +3,7 @@
 </div>
 <p align="center"> 
  <a href="https://social.vivaldi.net/@MoonOfTheKindred" target="_blank"> 
-    <img alt="Follow @MoonOfTheKindred" src ="https://img.shields.io/mastodon/follow/https://social.vivaldi.net/@MoonOfTheKindred" >
+    <img alt="Follow @MoonOfTheKindred" src ="https://img.shields.io/mastodon/follow/social.vivaldi.net/@MoonOfTheKindred" >
   </a>
 
   <a href="#">
