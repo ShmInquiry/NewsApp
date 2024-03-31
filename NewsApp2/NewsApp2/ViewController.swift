@@ -38,7 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         // view.backgroundColor = .systemBackground
         
-        // Adding a "+" button to the navigation bar
+        // Adding a "BookMark" button to the navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks , target: self, action: #selector(didTapAddButton))
         
         // Add pull to refresh control
@@ -120,9 +120,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     print("Article publishedAt: \(article.publishedAt)")
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "HH:mm:ssZ"
-//                    if let date = dateFormatter.date(from: article.publishedAt) {
-//                        let dateString = dateFormatter.string(from: date)
-//                    }
+                     if let date = dateFormatter.date(from: article.publishedAt) {
+                         let dateString = dateFormatter.string(from: date)
+                     }
                     return NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: imageURL, author: article.author ?? "", publishedAt: article.publishedAt)
 
                 }

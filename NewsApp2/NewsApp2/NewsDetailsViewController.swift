@@ -52,7 +52,7 @@ class NewsDetailsViewController: UIViewController {
         self.article = article
         super.init(nibName: nil, bundle: nil)
         // Initialize UI components and populate with news details
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .white
         
         
     }
