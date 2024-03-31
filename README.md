@@ -2,8 +2,8 @@
   <h1> <img src="https://i.postimg.cc/WpQzgxVh/plugin-Icon.png" width="80px"><br/>News Paper App</h1>
 </div>
 <p align="center"> 
- <a href="https://social.vivaldi.net/@MoonOfTheKindred" target="_blank"> alt="Follow @MoonOfTheKindred" i
-    <img src ="https://img.shields.io/mastodon/follow/MoonOfTheKindred" >
+ <a href="https://social.vivaldi.net/@MoonOfTheKindred" target="_blank"> 
+    <img alt="Follow @MoonOfTheKindred" src ="https://img.shields.io/mastodon/follow/MoonOfTheKindred" >
   </a>
 
   <a href="#">
