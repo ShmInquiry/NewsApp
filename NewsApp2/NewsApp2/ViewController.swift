@@ -38,8 +38,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         // view.backgroundColor = .systemBackground
         
-        // Adding a "BookMark" button to the navigation bar
+        // Adding a "BookMark" button to the navigation bar //was '+'
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks , target: self, action: #selector(didTapAddButton))
+        
+        //Add search bar
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search , target: self, action: #selector(didTapSearchButton))
         
         // Add pull to refresh control
         let refreshControl = UIRefreshControl()
@@ -60,6 +63,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Present news alternatives
         presentNewsSourcesList()
     }
+    
+    @objc private func didTapSearchButton(){
+        // Present news alternatives
+        //SearchInAllNewsSourcesList()
+    }
+    
+    //private func searchAllNewsSourcesList(){}
     
     private func presentNewsSourcesList(){
         // List of resources created and presented

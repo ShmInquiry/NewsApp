@@ -112,7 +112,7 @@ class NewsTableViewCell: UITableViewCell {
             height: 50)
         
         authorLabel.frame = CGRect(
-            x: 150,
+            x: 130,
             y: 70,
             width: contentView.frame.size.width - 185,
             height: 100)
@@ -123,8 +123,8 @@ class NewsTableViewCell: UITableViewCell {
             y: 70,
             width: contentView.frame.size.width - 185,
             height: 100)
-        dateFormatter.dateFormat = "HH"
-        timePosted.text = dateFormatter.string(from: Date())
+//        dateFormatter.dateFormat = "HH"
+//        timePosted.text = dateFormatter.string(from: Date())
         
         
         newsImageView.frame = CGRect(
@@ -163,25 +163,36 @@ class NewsTableViewCell: UITableViewCell {
               
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-HH-dd'T'HH:mm:ssZ"
-        if let publishedDate = dateFormatter.date(from: viewModel.publishedAt){
-            let calendar = Calendar.current
-            let component = calendar.dateComponents([.hour], from: publishedDate, to: Date())
-            if let hours = component.hour{
-                let timeAgoString: String
-                if hours > 0{
-                    timeAgoString = "\(hours) hour ago"
-                } else {
-                    timeAgoString = "Just now"
-                }
-                timePosted.text = timeAgoString
-            }
-            else {
-                timePosted.text = "Time calculation error"
-            }
-        } else {
-            timePosted.text = "Invalid Date"
-        }
-       // timePosted.text = dateFormatter.string(from: viewModel.publishedAt)
+        if let publishedAtDate = dateFormatter.date(from: viewModel.publishedAt) {
+               // Calculate time difference in seconds
+               let timeDifference = abs(publishedAtDate.timeIntervalSinceNow)
+               
+               // Calculate time difference in hours, days, weeks, and months
+               let hours = Int(timeDifference / 3600)
+               let days = Int(timeDifference / (3600 * 24))
+               let weeks = Int(timeDifference / (3600 * 24 * 7))
+               let months = Int(timeDifference / (3600 * 24 * 30))
+               
+               let timeAgoString: String
+               if months > 0 {
+                   timeAgoString = "\(months) month\(months > 1 ? "s" : "") ago"
+               } else if weeks > 0 {
+                   timeAgoString = "\(weeks) week\(weeks > 1 ? "s" : "") ago"
+               } else if days > 0 {
+                   timeAgoString = "\(days) day\(days > 1 ? "s" : "") ago"
+               } else if hours > 0 {
+                   timeAgoString = "\(hours) hour\(hours > 1 ? "s" : "") ago"
+               } else {
+                   timeAgoString = "just now"
+               }
+               
+               timePosted.text = timeAgoString
+           } else {
+               // Handle the case when the publishedAt string cannot be parsed into a Date object
+               timePosted.text = "Invalid Date"
+           }
+
+        
         
         //image
         
