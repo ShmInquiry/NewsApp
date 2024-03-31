@@ -2,8 +2,8 @@
   <h1> <img src="https://i.postimg.cc/WpQzgxVh/plugin-Icon.png" width="80px"><br/>News Paper App</h1>
 </div>
 <p align="center"> 
- <a href="https://social.vivaldi.net/@MoonOfTheKindred" target="_blank"> 
-    <img alt="Follow @MoonOfTheKindred" src ="https://img.shields.io/mastodon/follow/social.vivaldi.net/@MoonOfTheKindred" >
+<a href="https://social.vivaldi.net/@MoonOfTheKindred" target="_blank">
+    <img alt="Follow on MoonOfTheKindred" src="https://img.shields.io/twitter/follow/MoonOfTheKindred?color=purple&style=for-the-badge" style="vertical-align:center" >
   </a>
 
   <a href="#">
