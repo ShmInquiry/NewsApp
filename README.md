@@ -1,3 +1,3 @@
 Some screenshots of my NewsApp
 
-![Menu Interface 1](demoImages/MenuInterface1)
+![Menu Interface 1](demoImages/MenuInterface1.png)
