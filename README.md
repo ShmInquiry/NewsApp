@@ -29,8 +29,8 @@ This project is a news app developed in Swift using Xcode. It is my second proje
 ## Features 🎉
 - Browse and read the latest news articles 📰
 - Filter news by category or topic 🔍
-- Save favorite articles for later reading 📁
-- Customizable user settings ⚙️
+- TODO: Save favorite articles for later reading 📁
+- TODO: Customizable user settings ⚙️
 
 ## Technologies Used 💻
 - Swift 🐍
@@ -43,7 +43,7 @@ To get started with the app, follow these steps:
 3. Build and run the app on a simulator or device 📱
 
 ## Screenshots 🖼️
-[Add screenshots of the app here]
+[Screenshots of the app]
 Here is a demo of the App:
 ![Menu Interface 1](demoImages/MenuInterface1.png)
 
