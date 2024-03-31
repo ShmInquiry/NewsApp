@@ -1,9 +1,9 @@
 <div align="center">
   <h1> <img src="https://i.postimg.cc/WpQzgxVh/plugin-Icon.png" width="80px"><br/>News Paper App</h1>
 </div>
-<p align="center"> 
-  <a href="https://social.vivaldi.net/@MoonOfTheKindred" target="_blank"><img alt="Follow on MoonOfTheKindred" src="https://img.shields.io/twitter/follow/MoonOfTheKindred?style=for-the-badge" style="vertical-align:center" ></a>
-  <a href="#"><img alt="Made with Swift" src="https://img.shields.io/badge/Made%20with%20Swift-red.svg?style=for-the-badge&logo=swift" style="vertical-align:center" /></a>
+<p align="center"> 
+  <a href="https://social.vivaldi.net/@MoonOfTheKindred" target="_blank"><img alt="Follow on MoonOfTheKindred" src="https://img.shields.io/twitter/follow/MoonOfTheKindred?color=purple&style=for-the-badge" style="vertical-align:center" ></a>
+  <a href="#"><img alt="Made with Swift" src="https://img.shields.io/badge/Made%20with%20Swift-blue.svg?style=for-the-badge&logo=swift" style="vertical-align:center" /></a>
 </p>
 
 # News App 📰
