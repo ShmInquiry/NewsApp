@@ -1,6 +1,6 @@
 <div align="center">
   <h1>
-    <i class="fas fa-newspaper" style="font-size: 80px;"></i>
+    <i class="📰" style="font-size: 80px;"></i>
     <br/>
     News Paper App
   </h1>
