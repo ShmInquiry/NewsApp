@@ -123,7 +123,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                      if let date = dateFormatter.date(from: article.publishedAt) {
                          let dateString = dateFormatter.string(from: date)
                      }
-                    return NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: imageURL, author: article.author ?? "", publishedAt: article.publishedAt)
+                    return NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: imageURL, author: article.author ?? "", publishedAt: article.publishedAt ?? "")
 
                 }
                 else {

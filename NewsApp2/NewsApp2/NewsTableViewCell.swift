@@ -90,8 +90,6 @@ class NewsTableViewCell: UITableViewCell {
         contentView.addSubview(newsImageView)
         contentView.addSubview(authorLabel)
         contentView.addSubview(timePosted)
-
-
     }
     
     required init?(coder: NSCoder) {
@@ -114,7 +112,7 @@ class NewsTableViewCell: UITableViewCell {
             height: 50)
         
         authorLabel.frame = CGRect(
-            x: 10,
+            x: 150,
             y: 70,
             width: contentView.frame.size.width - 185,
             height: 100)
@@ -125,6 +123,9 @@ class NewsTableViewCell: UITableViewCell {
             y: 70,
             width: contentView.frame.size.width - 185,
             height: 100)
+        dateFormatter.dateFormat = "HH"
+        timePosted.text = dateFormatter.string(from: Date())
+        
         
         newsImageView.frame = CGRect(
             x: contentView.frame.size.width - 163,
@@ -154,11 +155,33 @@ class NewsTableViewCell: UITableViewCell {
         subTitleLabel.text = viewModel.subtitle
         authorLabel.text = viewModel.author
         
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "HH"
-//        timePosted.text = dateFormatter.string(from: viewModel.publishedAt)
-
-
+        //making the "last published" to show "1 hour ago", etc
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .short
+        formatter.allowedUnits = [.year, .month, .weekOfMonth, .day, .hour, .minute]
+        formatter.maximumUnitCount = 1
+              
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-HH-dd'T'HH:mm:ssZ"
+        if let publishedDate = dateFormatter.date(from: viewModel.publishedAt){
+            let calendar = Calendar.current
+            let component = calendar.dateComponents([.hour], from: publishedDate, to: Date())
+            if let hours = component.hour{
+                let timeAgoString: String
+                if hours > 0{
+                    timeAgoString = "\(hours) hour ago"
+                } else {
+                    timeAgoString = "Just now"
+                }
+                timePosted.text = timeAgoString
+            }
+            else {
+                timePosted.text = "Time calculation error"
+            }
+        } else {
+            timePosted.text = "Invalid Date"
+        }
+       // timePosted.text = dateFormatter.string(from: viewModel.publishedAt)
         
         //image
         
