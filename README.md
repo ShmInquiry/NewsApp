@@ -50,6 +50,6 @@ Here is a demo of the App:
 ## Acknowledgements 🙏
 Credits:
 - [MoonOfTheKindred](https://social.vivaldi.net/@MoonOfTheKindred)
-
+- (other contributers please refer to me, or my mastodon, and contact me to be added in credits)
 Feel free to reach out if you have any questions or feedback about the app! 📢
 
