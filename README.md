@@ -43,7 +43,6 @@ To get started with the app, follow these steps:
 3. Build and run the app on a simulator or device 📱
 
 ## Screenshots 🖼️
-[Screenshots of the app]
 Here is a demo of the App:
 ![Menu Interface 1](demoImages/MenuInterface1.png)
 
