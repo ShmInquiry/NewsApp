@@ -1,6 +1,6 @@
 <div align="center">
   <h1>
-    <span style="font-size: 80px;">📰</span>
+    <span style="font-size: 80px;">#📰</span>
     <br/>
     News Paper App
   </h1>
