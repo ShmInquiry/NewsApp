@@ -1,10 +1,10 @@
-//
 //  NewsTableViewCell.swift
 //  NewsApp2
 //
 //  Created by Sh.M on 19/03/2024.
 //
 
+import NewsLastFetchedUtility
 import Foundation
 import UIKit
 
@@ -161,6 +161,7 @@ class NewsTableViewCell: UITableViewCell {
         formatter.allowedUnits = [.year, .month, .weekOfMonth, .day, .hour, .minute]
         formatter.maximumUnitCount = 1
               
+<<<<<<< HEAD
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-HH-dd'T'HH:mm:ssZ"
         if let publishedAtDate = dateFormatter.date(from: viewModel.publishedAt) {
@@ -192,6 +193,10 @@ class NewsTableViewCell: UITableViewCell {
                timePosted.text = "Invalid Date"
            }
         
+=======
+        let timeAgoString = NewsLastFetchedUtility.calculateTimeAgo(from: viewModel.publishedAt)
+        timePosted.text = timeAgoString
+>>>>>>> 05977e8f8979220a81b39a9d3844b04bbeb23954
         
         //image
         
@@ -213,3 +218,4 @@ class NewsTableViewCell: UITableViewCell {
         }
     }
 }
+
