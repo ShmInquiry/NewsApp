@@ -2,7 +2,7 @@
   <h1>
     <span style="font-size: 80px;">  📰</span>
     <br/>
-    News App Fetcher
+    News Fetcher App
   </h1>
 </div>
 <p align="center"> 
