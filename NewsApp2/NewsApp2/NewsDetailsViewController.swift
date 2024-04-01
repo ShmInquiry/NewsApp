@@ -163,6 +163,7 @@ class NewsDetailsViewController: UIViewController {
                 }
             }.resume()
         }
+        
     }
     
     private let newsImageView: UIImageView = {

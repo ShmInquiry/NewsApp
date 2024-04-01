@@ -191,7 +191,6 @@ class NewsTableViewCell: UITableViewCell {
                // Handle the case when the publishedAt string cannot be parsed into a Date object
                timePosted.text = "Invalid Date"
            }
-
         
         
         //image
