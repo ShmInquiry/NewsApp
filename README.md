@@ -44,15 +44,17 @@ To get started with the app, follow these steps:
 
 ## Screenshots 🖼️
 ### Here is a demo of the App:
-![Menu Interface 1](demoImages/MenuInterface1.png)
-### FUzZy search !
-![Search engine](demoImages/FuzzySearchYourArticle.png)
-### Choose your favorite news source category !
-![News listingr UI](demoImages/NewsListing.png)
-### View your news articles summary within the app 
-(and you can still click on the link to open it within the app, thanks to builting saferi webviewer !)
-![News article UI](demoImages/ViewNewsInApp.png)
+<img src="demoImages/MenuInterface1.png" alt="Menu Interface 1" width="300" height="200">
 
+### FUzzy search !
+<img src="demoImages/FuzzySearchYourArticle.png" alt="Search engine" width="300" height="200">
+
+### Choose your favorite news source category !
+<img src="demoImages/NewsListing.png" alt="News listing UI" width="300" height="200">
+
+### View your news articles summary within the app 
+(and you can still click on the link to open it within the app, thanks to built-in Saferi web viewer !)
+<img src="demoImages/ViewNewsInApp.png" alt="News article UI" width="300" height="200">
 
 ## Acknowledgements 🙏
 Credits:
