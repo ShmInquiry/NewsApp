@@ -95,7 +95,8 @@ class NewsDetailsViewController: UIViewController {
         title.widthAnchor.constraint(equalToConstant: 100).isActive = true
         title.textAlignment = .center
 
-        let titleBg = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 15,y: view.frame.size.width  / 1.25), size: CGSize(width: 370, height: 215)))
+        //The grey label behind the title and the time post, and the author name
+        let titleBg = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 15,y: view.frame.size.width  / 1.25), size: CGSize(width: 370, height: 235)))
         titleBg.numberOfLines = 175
         titleBg.clipsToBounds = true
         titleBg.layer.cornerRadius = 30.0
@@ -111,18 +112,19 @@ class NewsDetailsViewController: UIViewController {
         description.text = article.content
         description.textAlignment = .justified
         
-        let timePosted = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 11,y: view.frame.size.width  / 1.43), size: CGSize(width: 350, height: 470)))
+        let timePosted = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 10,y: view.frame.size.width  / 1.43), size: CGSize(width: 350, height: 470)))
         timePosted.font = .systemFont(ofSize: 20, weight: .light)
         timePosted.textColor = .black
         timePosted.textAlignment = .left
        //timePosted.text = fetchNews()
     
-        let Author = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 12,y: view.frame.size.width  / 1.43), size: CGSize(width: 350, height: 470)))
+        let Author = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 14,y: view.frame.size.width  / 1.33), size: CGSize(width: 350, height: 470)))
         Author.font = .systemFont(ofSize: 20, weight: .medium)
         Author.textColor = .black
         Author.text = "Author: " + article.author
         Author.textAlignment = .right
-   
+        Author.lineBreakMode = .byTruncatingTail
+        Author.numberOfLines = 2
         
         let LinkUrl = UILabel(frame: CGRect(origin: CGPoint(x: 20,y: 440), size: CGSize(width: 350, height: 880)))
         LinkUrl.font = .systemFont(ofSize: 20, weight: .light)
