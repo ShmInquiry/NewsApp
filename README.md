@@ -44,7 +44,7 @@ To get started with the app, follow these steps:
 
 ## Screenshots 🖼️
 ### Here is a demo of the App:
-<img src="demoImages/MenuInterface1.png" alt="Menu Interface 1" width="125" height="200">
+<img src="demoImages/MenuInterface1.png" alt="Menu Interface 1" width="125*2" height="200*2">
 
 ### FUzzy search !
 <img src="demoImages/FuzzySearchYourArticle.png" alt="Search engine" width="115" height="200">
