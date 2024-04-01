@@ -118,7 +118,7 @@ class NewsDetailsViewController: UIViewController {
         timePosted.textAlignment = .left
        //timePosted.text = fetchNews()
     
-        let Author = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 14,y: view.frame.size.width  / 1.33), size: CGSize(width: 350, height: 470)))
+        let Author = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 14,y: view.frame.size.width  / 1.31), size: CGSize(width: 350, height: 470)))
         Author.font = .systemFont(ofSize: 20, weight: .medium)
         Author.textColor = .black
         Author.text = "Author: " + article.author
