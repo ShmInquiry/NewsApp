@@ -16,6 +16,7 @@
 		05C44C812BA87ACB00B86BC9 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C44C802BA87ACB00B86BC9 /* APICaller.swift */; };
 		05C44C832BA96F5B00B86BC9 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C44C822BA96F5B00B86BC9 /* NewsTableViewCell.swift */; };
 		05C44C892BAB027300B86BC9 /* NewsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C44C882BAB027300B86BC9 /* NewsDetailsViewController.swift */; };
+		05C44C8F2BBAAFD700B86BC9 /* NewsLastFetchedUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C44C8E2BBAAFD700B86BC9 /* NewsLastFetchedUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		05C44C802BA87ACB00B86BC9 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		05C44C822BA96F5B00B86BC9 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		05C44C882BAB027300B86BC9 /* NewsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsViewController.swift; sourceTree = "<group>"; };
+		05C44C8E2BBAAFD700B86BC9 /* NewsLastFetchedUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLastFetchedUtility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				05C44C802BA87ACB00B86BC9 /* APICaller.swift */,
 				05C44C822BA96F5B00B86BC9 /* NewsTableViewCell.swift */,
 				05C44C882BAB027300B86BC9 /* NewsDetailsViewController.swift */,
+				05C44C8E2BBAAFD700B86BC9 /* NewsLastFetchedUtility.swift */,
 			);
 			path = NewsApp2;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05C44C8F2BBAAFD700B86BC9 /* NewsLastFetchedUtility.swift in Sources */,
 				05C44C712BA8790D00B86BC9 /* ViewController.swift in Sources */,
 				05C44C6D2BA8790C00B86BC9 /* AppDelegate.swift in Sources */,
 				05C44C832BA96F5B00B86BC9 /* NewsTableViewCell.swift in Sources */,

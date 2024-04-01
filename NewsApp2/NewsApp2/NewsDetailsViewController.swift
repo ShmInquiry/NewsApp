@@ -1,9 +1,10 @@
 import UIKit
-import SwiftUI
+import SafariServices
 
 enum ConstraintType {
     case top, leading, trailing, bottom, width, height
 }
+
 
 extension UIView {
 
@@ -39,11 +40,25 @@ extension UIView {
         let constraintsArray = Array<NSLayoutConstraint>(constraints.values)
         NSLayoutConstraint.activate(constraintsArray)
         return constraints
+        
     }
 }
 
 
 class NewsDetailsViewController: UIViewController {
+    
+    //Customize Navi Bar
+    
+    
+    //Object function that handles taps on links
+    @objc func handleTap(){
+        if let url = URL(string: article.url){
+            let safariViewController = SFSafariViewController(url: url)
+            present(safariViewController, animated: true, completion: nil)
+            //UIApplication.shared.open(url)
+        }
+    }
+
     
     private let article: Article
     // Add UI components to display news details
@@ -53,7 +68,6 @@ class NewsDetailsViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         // Initialize UI components and populate with news details
         view.backgroundColor = .white
-        
         
     }
     
@@ -65,40 +79,44 @@ class NewsDetailsViewController: UIViewController {
         super.viewDidLoad()
         // Configure UI components and layout
         
-        let title = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 15,y: view.frame.size.width  / 1.25), size: CGSize(width: 370, height: 165)))
+        let title = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 15,y: view.frame.size.width  / 1.35), size: CGSize(width: 370, height: 205)))
         title.numberOfLines = 175
         title.font = .systemFont(ofSize: 27, weight: .semibold)
         title.clipsToBounds = true
         title.layer.cornerRadius = 30.0
         title.textColor = .black
         title.text = article.title
-        title.backgroundColor = .systemGray5
         title.heightAnchor.constraint(equalToConstant: 100).isActive = true
         title.widthAnchor.constraint(equalToConstant: 100).isActive = true
         title.textAlignment = .center
-//        title.textAlignment = AnchorPoint()
-                
+
+        let titleBg = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 15,y: view.frame.size.width  / 1.25), size: CGSize(width: 370, height: 215)))
+        titleBg.numberOfLines = 175
+        titleBg.clipsToBounds = true
+        titleBg.layer.cornerRadius = 30.0
+        titleBg.backgroundColor = .systemGray5
+        titleBg.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        titleBg.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        titleBg.textAlignment = .center
         
         let description = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 25,y: view.frame.size.width  / 1), size: CGSize(width: 350, height: 470)))
         description.numberOfLines = 5000
         description.font = .systemFont(ofSize: 20, weight: .regular)
         description.textColor = .black
         description.text = article.content
-   
-//        label.textAlignment =
+        description.textAlignment = .justified
         
-        let publishedDate = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 15,y: view.frame.size.width  / 0.7), size: CGSize(width: 350, height: 470)))
-        publishedDate.font = .systemFont(ofSize: 20, weight: .light)
-        publishedDate.textColor = .black
-        
-//        let dateFormatter = DateFormatter()
-
-        publishedDate.text = article.publishedAt
+        let timePosted = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 11,y: view.frame.size.width  / 1.43), size: CGSize(width: 350, height: 470)))
+        timePosted.font = .systemFont(ofSize: 20, weight: .light)
+        timePosted.textColor = .black
+        timePosted.textAlignment = .left
+       //timePosted.text = fetchNews()
     
-        let Author = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 15,y: view.frame.size.width  / 1.43), size: CGSize(width: 350, height: 470)))
+        let Author = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 12,y: view.frame.size.width  / 1.43), size: CGSize(width: 350, height: 470)))
         Author.font = .systemFont(ofSize: 20, weight: .medium)
         Author.textColor = .black
         Author.text = "Author: " + article.author
+        Author.textAlignment = .right
    
         
         let LinkUrl = UILabel(frame: CGRect(origin: CGPoint(x: 20,y: 440), size: CGSize(width: 350, height: 880)))
@@ -107,49 +125,33 @@ class NewsDetailsViewController: UIViewController {
 //        LinkUrl.toggleUnderline(Any?.self)
         LinkUrl.text = article.url
         
+        //Handle link click
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        LinkUrl.isUserInteractionEnabled = true
+        LinkUrl.addGestureRecognizer(tapGesture)
+
+        
         newsImageView.frame = CGRect(origin: CGPoint(x: 0,y: 80), size: CGSize(width: 428, height: 325))
         
-        
-        
-//        var previous: UILabel?
 //
-//        for label in [title, publishedDate, Author, description, LinkUrl] {
-//            label.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-//            label.heightAnchor.constraint(equalToConstant: 88).isActive = true
-//
-//
-//            if let previous = previous {
-//                // we have a previous label – create a height constraint
-//                label.topAnchor.constraint(equalTo: previous.bottomAnchor, constant: 10).isActive = true
-//            } else {
-//                // this is the first label
-//                label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-//            }
-//
-//
-//            // set the previous label to be the current one, for the next loop iteration
-//            previous = label
-//        }
-//
-        
+        configure(publishedAt: article.publishedAt, timePosted: timePosted)
+
         view.addSubview(newsImageView)
-        configure()
-        
+        view.addSubview(titleBg)
         view.addSubview(title)
-        view.addSubview(publishedDate)
+        view.addSubview(timePosted)
         view.addSubview(Author)
         
         view.addSubview(description)
         
         view.addSubview(LinkUrl)
-
-
-////        view.addSubview(sceneView)
-//        title.anchor(top: self.view.topAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
+        
+        
+
     }
     
-    func configure() {
+    func configure(publishedAt: String, timePosted: UILabel) {
         //image
         if let url = URL(string: article.urlToImage ?? "") {
             // fetch the image
@@ -164,6 +166,9 @@ class NewsDetailsViewController: UIViewController {
             }.resume()
         }
         
+        let timeAgoString = NewsLastFetchedUtility.calculateTimeAgo(from: publishedAt)
+        timePosted.text = timeAgoString
+        
     }
     
     private let newsImageView: UIImageView = {
@@ -177,5 +182,4 @@ class NewsDetailsViewController: UIViewController {
         return imageView
     }()
 }
-
 

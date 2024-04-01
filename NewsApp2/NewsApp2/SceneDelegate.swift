@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  NewsApp2
 //
-//  Created by NBK on 18/03/2024.
+//  Created by ShM on 18/03/2024.
 //
 
 import UIKit

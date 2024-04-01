@@ -1,5 +1,5 @@
 //
-//  FetchDates.swift
+//  NewsLastFetchedUtility.swift
 //  NewsApp2
 //
 //  Created by ShM on 01/04/2024.

@@ -4,7 +4,7 @@
 //  Created by Sh.M on 19/03/2024.
 //
 
-import NewsLastFetchedUtility
+//import NewsLastFetchedUtility
 import Foundation
 import UIKit
 
@@ -161,42 +161,39 @@ class NewsTableViewCell: UITableViewCell {
         formatter.allowedUnits = [.year, .month, .weekOfMonth, .day, .hour, .minute]
         formatter.maximumUnitCount = 1
               
-<<<<<<< HEAD
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-HH-dd'T'HH:mm:ssZ"
-        if let publishedAtDate = dateFormatter.date(from: viewModel.publishedAt) {
-               // Calculate time difference in seconds
-               let timeDifference = abs(publishedAtDate.timeIntervalSinceNow)
-               
-               // Calculate time difference in hours, days, weeks, and months
-               let hours = Int(timeDifference / 3600)
-               let days = Int(timeDifference / (3600 * 24))
-               let weeks = Int(timeDifference / (3600 * 24 * 7))
-               let months = Int(timeDifference / (3600 * 24 * 30))
-               
-               let timeAgoString: String
-               if months > 0 {
-                   timeAgoString = "\(months) month\(months > 1 ? "s" : "") ago"
-               } else if weeks > 0 {
-                   timeAgoString = "\(weeks) week\(weeks > 1 ? "s" : "") ago"
-               } else if days > 0 {
-                   timeAgoString = "\(days) day\(days > 1 ? "s" : "") ago"
-               } else if hours > 0 {
-                   timeAgoString = "\(hours) hour\(hours > 1 ? "s" : "") ago"
-               } else {
-                   timeAgoString = "just now"
-               }
-               
-               timePosted.text = timeAgoString
-           } else {
-               // Handle the case when the publishedAt string cannot be parsed into a Date object
-               timePosted.text = "Invalid Date"
-           }
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-HH-dd'T'HH:mm:ssZ"
+//        if let publishedAtDate = dateFormatter.date(from: viewModel.publishedAt) {
+//               // Calculate time difference in seconds
+//               let timeDifference = abs(publishedAtDate.timeIntervalSinceNow)
+//               
+//               // Calculate time difference in hours, days, weeks, and months
+//               let hours = Int(timeDifference / 3600)
+//               let days = Int(timeDifference / (3600 * 24))
+//               let weeks = Int(timeDifference / (3600 * 24 * 7))
+//               let months = Int(timeDifference / (3600 * 24 * 30))
+//               
+//               let timeAgoString: String
+//               if months > 0 {
+//                   timeAgoString = "\(months) month\(months > 1 ? "s" : "") ago"
+//               } else if weeks > 0 {
+//                   timeAgoString = "\(weeks) week\(weeks > 1 ? "s" : "") ago"
+//               } else if days > 0 {
+//                   timeAgoString = "\(days) day\(days > 1 ? "s" : "") ago"
+//               } else if hours > 0 {
+//                   timeAgoString = "\(hours) hour\(hours > 1 ? "s" : "") ago"
+//               } else {
+//                   timeAgoString = "just now"
+//               }
+//               
+//               timePosted.text = timeAgoString
+//           } else {
+//               // Handle the case when the publishedAt string cannot be parsed into a Date object
+//               timePosted.text = "Invalid Date"
+//           }
         
-=======
         let timeAgoString = NewsLastFetchedUtility.calculateTimeAgo(from: viewModel.publishedAt)
         timePosted.text = timeAgoString
->>>>>>> 05977e8f8979220a81b39a9d3844b04bbeb23954
         
         //image
         

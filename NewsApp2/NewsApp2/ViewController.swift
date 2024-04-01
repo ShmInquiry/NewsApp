@@ -269,7 +269,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             navigationController?.navigationBar.prefersLargeTitles = true
-
+        
+            //Set navigation bar on top of the app to custom height size
+        navigationController?.navigationBar.frame.size.height = 49
+        navigationController?.hidesBarsOnSwipe = true
+        navigationController?.hidesBarsOnTap = true
+        
+            //Update Appearance of navi bar
             let appearance = UINavigationBarAppearance()
             appearance.backgroundColor = .cyan
             appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
