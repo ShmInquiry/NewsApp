@@ -28,6 +28,9 @@ This project is a news app developed in Swift using Xcode. It is my second proje
 
 ## Features 🎉
 - Browse and read the latest news articles 📰
+- Fuzzy search for news articles !
+- View summary articles within the app.
+- View the articles within the app with the builtin web-view browser !
 - Filter news by category or topic 🔍
 - TODO: Save favorite articles for later reading 📁
 - TODO: Customizable user settings ⚙️
