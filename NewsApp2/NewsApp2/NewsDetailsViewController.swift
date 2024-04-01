@@ -77,6 +77,11 @@ class NewsDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Configure screen center for compatiability across devices
+        let centerX = view.frame.size.width / 2
+        let centerY = view.frame.size.height / 2
+        let topMargin: CGFloat = 40
+        
         // Configure UI components and layout
         
         let title = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 15,y: view.frame.size.width  / 1.35), size: CGSize(width: 370, height: 205)))
@@ -122,7 +127,7 @@ class NewsDetailsViewController: UIViewController {
         let LinkUrl = UILabel(frame: CGRect(origin: CGPoint(x: 20,y: 440), size: CGSize(width: 350, height: 880)))
         LinkUrl.font = .systemFont(ofSize: 20, weight: .light)
         LinkUrl.textColor = .blue
-//        LinkUrl.toggleUnderline(Any?.self)
+        //LinkUrl.toggleUnderline(Any?.self)
         LinkUrl.text = article.url
         
         //Handle link click
@@ -130,9 +135,13 @@ class NewsDetailsViewController: UIViewController {
         LinkUrl.isUserInteractionEnabled = true
         LinkUrl.addGestureRecognizer(tapGesture)
 
-        
-        newsImageView.frame = CGRect(origin: CGPoint(x: 0,y: 80), size: CGSize(width: 428, height: 325))
-        
+        //Setting image size and height
+        let imageWidth: CGFloat = 410
+        let imageHeight: CGFloat = 330
+        newsImageView.frame = CGRect(x: centerX - (imageWidth / 2), y: topMargin, width: imageWidth, height: imageHeight)
+        newsImageView.layer.cornerRadius = 50
+        newsImageView.layer.masksToBounds = true
+      
 //
         configure(publishedAt: article.publishedAt, timePosted: timePosted)
 

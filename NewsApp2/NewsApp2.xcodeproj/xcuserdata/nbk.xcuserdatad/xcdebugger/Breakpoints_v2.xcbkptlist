@@ -14,9 +14,9 @@
             filePath = "NewsApp2/NewsDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "configure(publishedAt:timePosted:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
