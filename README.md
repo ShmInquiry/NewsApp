@@ -43,15 +43,15 @@ To get started with the app, follow these steps:
 3. Build and run the app on a simulator or device 📱
 
 ## Screenshots 🖼️
-Here is a demo of the App:
+### Here is a demo of the App:
 ![Menu Interface 1](demoImages/MenuInterface1.png)
-FUzZy search !
+### FUzZy search !
 ![Search engine](demoImages/FuzzySearchYourArticle.png)
-Choose your favorite news source category !
+### Choose your favorite news source category !
 ![News listingr UI](demoImages/NewsListing.png)
-View your news articles summary within the app (and you can still click on the link to open it within the app, thanks to builting saferi webviewer !)
+### View your news articles summary within the app 
+(and you can still click on the link to open it within the app, thanks to builting saferi webviewer !)
 ![News article UI](demoImages/ViewNewsInApp.png)
-
 
 
 ## Acknowledgements 🙏
