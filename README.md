@@ -45,6 +45,14 @@ To get started with the app, follow these steps:
 ## Screenshots 🖼️
 Here is a demo of the App:
 ![Menu Interface 1](demoImages/MenuInterface1.png)
+FUzZy search !
+![Search engine](demoImages/FuzzySearchYourArticle.png)
+Choose your favorite news source category !
+![News listingr UI](demoImages/NewsListing.png)
+View your news articles summary within the app (and you can still click on the link to open it within the app, thanks to builting saferi webviewer !)
+![News article UI](demoImages/ViewNewsInApp.png)
+
+
 
 ## Acknowledgements 🙏
 Credits:
