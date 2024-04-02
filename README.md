@@ -61,7 +61,6 @@ To get started with the app, follow these steps:
 
 ## Acknowledgements 🙏
 Credits:
-- [MoonOfTheKindred](https://social.vivaldi.net/@MoonOfTheKindred)
 - [AliAdam](https://github.com/AliAdam)
 - (other contributers please refer to me, or my mastodon, and contact me to be added in credits)
 
