@@ -293,11 +293,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            let headerView = UIView()
-            headerView.backgroundColor = .systemGray5
-            return headerView
-        }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//            let headerView = UIView()
+//            headerView.backgroundColor = .systemGray5
+//            return headerView
+//        }
         
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         

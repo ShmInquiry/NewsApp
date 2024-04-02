@@ -105,7 +105,7 @@ class NewsDetailsViewController: UIViewController {
         titleBg.widthAnchor.constraint(equalToConstant: 100).isActive = true
         titleBg.textAlignment = .center
         
-        let description = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 25,y: view.frame.size.width  / 1), size: CGSize(width: 350, height: 470)))
+        let description = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 25,y: view.frame.size.width  / 0.95), size: CGSize(width: 350, height: 470)))
         description.numberOfLines = 5000
         description.font = .systemFont(ofSize: 20, weight: .regular)
         description.textColor = .black
