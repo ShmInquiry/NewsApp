@@ -121,10 +121,11 @@ class NewsDetailsViewController: UIViewController {
         let Author = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.size.width  / 14,y: view.frame.size.width  / 1.31), size: CGSize(width: 350, height: 470)))
         Author.font = .systemFont(ofSize: 20, weight: .medium)
         Author.textColor = .black
-        Author.text = "Author: " + article.author
+        Author.text = "Author: " + article.author!
         Author.textAlignment = .right
         Author.lineBreakMode = .byTruncatingTail
         Author.numberOfLines = 2
+        Author.clipsToBounds = true
         
         let LinkUrl = UILabel(frame: CGRect(origin: CGPoint(x: 20,y: 440), size: CGSize(width: 350, height: 880)))
         LinkUrl.font = .systemFont(ofSize: 20, weight: .light)

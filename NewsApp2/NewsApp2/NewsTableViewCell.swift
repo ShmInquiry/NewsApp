@@ -16,7 +16,7 @@ class NewsTableViewCellViewModel {
     let subtitle: String
     let imageURL: URL?
     var imageData: Data? = nil
-    let author: String?
+    let name: String?
     let publishedAt: String
     
 //    dateFormatter.dateFormat = "dd/MM/yy"
@@ -26,13 +26,13 @@ class NewsTableViewCellViewModel {
         title: String,
         subtitle: String,
         imageURL: URL?,
-        author: String?,
+        name: String?,
         publishedAt: String
     ) {
         self.title = title
         self.subtitle = subtitle
         self.imageURL = imageURL
-        self.author = author
+        self.name = name
         self.publishedAt = publishedAt
     }
 }
@@ -64,7 +64,7 @@ class NewsTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private let authorLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 14, weight: .medium)
@@ -90,7 +90,7 @@ class NewsTableViewCell: UITableViewCell {
         contentView.addSubview(newsTitleLabel)
         contentView.addSubview(subTitleLabel)
         contentView.addSubview(newsImageView)
-        contentView.addSubview(authorLabel)
+        contentView.addSubview(nameLabel)
         contentView.addSubview(timePosted)
     }
     
@@ -113,7 +113,7 @@ class NewsTableViewCell: UITableViewCell {
             width: contentView.frame.size.width - 185,
             height: 50)
         
-        authorLabel.frame = CGRect(
+        nameLabel.frame = CGRect(
             x: 140,
             y: 70,
             width: contentView.frame.size.width - 185,
@@ -145,7 +145,7 @@ class NewsTableViewCell: UITableViewCell {
         super.prepareForReuse()
         newsTitleLabel.text = nil
         subTitleLabel.text = nil
-        authorLabel.text = nil
+        nameLabel.text = nil
         timePosted.text = nil
         newsImageView.image = nil
     }
@@ -153,7 +153,7 @@ class NewsTableViewCell: UITableViewCell {
     func configure(with viewModel: NewsTableViewCellViewModel) {
         newsTitleLabel.text = viewModel.title
         subTitleLabel.text = viewModel.subtitle
-        authorLabel.text = viewModel.author
+        nameLabel.text = viewModel.name
         
         //making the "last published" to show "1 hour ago", etc
         let formatter = DateComponentsFormatter()
@@ -166,13 +166,13 @@ class NewsTableViewCell: UITableViewCell {
 //        if let publishedAtDate = dateFormatter.date(from: viewModel.publishedAt) {
 //               // Calculate time difference in seconds
 //               let timeDifference = abs(publishedAtDate.timeIntervalSinceNow)
-//               
+//
 //               // Calculate time difference in hours, days, weeks, and months
 //               let hours = Int(timeDifference / 3600)
 //               let days = Int(timeDifference / (3600 * 24))
 //               let weeks = Int(timeDifference / (3600 * 24 * 7))
 //               let months = Int(timeDifference / (3600 * 24 * 30))
-//               
+//
 //               let timeAgoString: String
 //               if months > 0 {
 //                   timeAgoString = "\(months) month\(months > 1 ? "s" : "") ago"
@@ -185,7 +185,7 @@ class NewsTableViewCell: UITableViewCell {
 //               } else {
 //                   timeAgoString = "just now"
 //               }
-//               
+//
 //               timePosted.text = timeAgoString
 //           } else {
 //               // Handle the case when the publishedAt string cannot be parsed into a Date object

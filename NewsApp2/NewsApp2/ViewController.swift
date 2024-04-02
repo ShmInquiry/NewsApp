@@ -37,6 +37,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     private var viewModels = [NewsTableViewCellViewModel]()
     private var articles = [Article]()
+    private var sources = [Source]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +68,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc private func refreshNews() {
-        // Fetch news agin
+        // Fetch news again
         fetchTopStories()
     }
     
@@ -98,6 +99,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let appleAction = UIAlertAction(title: "Apple News", style: .default) { [weak self] _ in
             self?.fetchNews(from: APICaller.Constats.thirdHeadlinesURL!)
         }
+        let us_topAction = UIAlertAction(title: "United States Top News", style: .default) { [weak self] _ in
+            self?.fetchNews(from: APICaller.Constats.fourthHeadlinesURL!)
+        }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -106,6 +110,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alertController.addAction(techCrunchAction)
         alertController.addAction(wsjAction)
         alertController.addAction(appleAction)
+        alertController.addAction(us_topAction)
         alertController.addAction(cancelAction)
         
         // Present the alert controller
@@ -143,11 +148,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                      if let date = dateFormatter.date(from: article.publishedAt) {
                          let dateString = dateFormatter.string(from: date)
                      }
-                    return NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: imageURL, author: article.author ?? "", publishedAt: article.publishedAt ?? "")
+                    return NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: imageURL, name: article.source.name ?? "", publishedAt: article.publishedAt ?? "")
 
                 }
                 else {
-                    return NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: nil, author: article.author ?? "", publishedAt: article.publishedAt)
+                    return NewsTableViewCellViewModel(title: article.title ?? "", subtitle: article.description ?? "", imageURL: nil, name: article.source.name ?? "", publishedAt: article.publishedAt)
                 }
             }.compactMap { $0 }
             DispatchQueue.main.async {
@@ -168,15 +173,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     NewsTableViewCellViewModel(
                         title: $0.title,
                         subtitle: $0.description ?? "No Description",
-                        imageURL: URL(string: $0.urlToImage ?? ""), author: $0.author ?? "Unknown Author",
+                        imageURL: URL(string: $0.urlToImage ?? ""), name: $0.source.name ?? "Unknown Author",
                         publishedAt: $0.publishedAt
                     )
                 })
-                
+                                
                 DispatchQueue.main.async {
                     self?.tableView.refreshControl?.endRefreshing() // stop refresh anim
                     self?.tableView.reloadData()
                 }
+
             case .failure(let error):
                 print(error)
             }

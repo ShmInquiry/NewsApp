@@ -19,8 +19,10 @@ final class APICaller {
         "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=274099a79e6d4a679542c030ea58adc2")
         
         static let thirdHeadlinesURL  = URL (string:
-        "https://newsapi.org/v2/everything?q=apple&from=2024-03-17&to=2024-03-17&sortBy=popularity&apiKey=274099a79e6d4a679542c030ea58adc2")
+        "https://newsapi.org/v2/everything?q=apple&from=2024-04-01&to=2024-04-01&sortBy=popularity&apiKey=274099a79e6d4a679542c030ea58adc2")
 
+        static let fourthHeadlinesURL  = URL (string:
+        "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=274099a79e6d4a679542c030ea58adc2")
 
     }
     
@@ -104,6 +106,32 @@ final class APICaller {
         task.resume()
     }
     
+    public func getTopStories4(completion: @escaping (Result<[Article], Error>) -> Void)
+    {
+        guard let url = Constats.thirdHeadlinesURL else {
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) {data, _, error in
+            if let error = error {
+                completion(.failure(error))
+            }
+            else if let data = data {
+                
+                do {
+                    let result = try JSONDecoder().decode(APIResponse.self, from: data)
+                    
+                    print("Articles: \(result.articles.count)")
+                    completion(.success(result.articles))
+                }
+                catch {
+                    completion(.failure(error))
+                }
+            }
+        }
+        task.resume()
+    }
+    
     public func fetchNews(from url: URL, completion: @escaping (Result<[Article], Error>) -> Void) {
         let task = URLSession.shared.dataTask(with: url) {
             data, _, error in
@@ -134,10 +162,12 @@ struct Article: Codable{
     let url: String
     let urlToImage: String?
     let publishedAt: String
-    let content: String
-    let author: String
+    let content: String?
+    let author: String?
+    let source: Source
 }
 
 struct Source: Codable {
-    let name: String
+    let id: String?
+    let name: String?
 }
