@@ -226,10 +226,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 fatalError()
             }
         let viewModel = isSearching ? filteredViewModels[indexPath.row] : viewModels[indexPath.row]
-        cell.configure(with: viewModel)
+             let maxCharacter = 16
+        cell.configure(with: viewModel, maxCharacter: maxCharacter)
+        //cell.configure(with: viewModel, withText: articles.description, maxCharacter: maxCharacter)
         //        cell.configure(with: viewModels[indexPath.row])
-        //        cell.configure(with: viewModels[indexPath.row])
-
         return cell
             }
     

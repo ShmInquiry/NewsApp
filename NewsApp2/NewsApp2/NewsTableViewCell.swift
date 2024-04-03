@@ -12,6 +12,9 @@ let date = Date()
 let dateFormatter = DateFormatter()
 
 class NewsTableViewCellViewModel {
+    @IBOutlet weak var textLabel: UILabel!
+    
+    
     let title: String
     let subtitle: String
     let imageURL: URL?
@@ -38,6 +41,7 @@ class NewsTableViewCellViewModel {
 }
 
 class NewsTableViewCell: UITableViewCell {
+ 
     static let identifier = "NewsTableViewCell"
     
     private let newsTitleLabel: UILabel = {
@@ -66,9 +70,12 @@ class NewsTableViewCell: UITableViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
         label.font = .systemFont(ofSize: 14, weight: .medium)
-        label.textAlignment = .left
+        label.textAlignment = .right
+        label.numberOfLines = 0
+        label.lineBreakMode = .byTruncatingTail
+        
+        
         return label
     }()
     
@@ -114,7 +121,7 @@ class NewsTableViewCell: UITableViewCell {
             height: 50)
         
         nameLabel.frame = CGRect(
-            x: 140,
+            x: 20,
             y: 70,
             width: contentView.frame.size.width - 185,
             height: 100)
@@ -148,50 +155,18 @@ class NewsTableViewCell: UITableViewCell {
         nameLabel.text = nil
         timePosted.text = nil
         newsImageView.image = nil
-    }
-    
-    func configure(with viewModel: NewsTableViewCellViewModel) {
+        }
+        
+
+    func configure(with viewModel: NewsTableViewCellViewModel, maxCharacter: Int) {
         newsTitleLabel.text = viewModel.title
         subTitleLabel.text = viewModel.subtitle
         nameLabel.text = viewModel.name
         
-        //making the "last published" to show "1 hour ago", etc
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .short
-        formatter.allowedUnits = [.year, .month, .weekOfMonth, .day, .hour, .minute]
-        formatter.maximumUnitCount = 1
-              
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-HH-dd'T'HH:mm:ssZ"
-//        if let publishedAtDate = dateFormatter.date(from: viewModel.publishedAt) {
-//               // Calculate time difference in seconds
-//               let timeDifference = abs(publishedAtDate.timeIntervalSinceNow)
-//
-//               // Calculate time difference in hours, days, weeks, and months
-//               let hours = Int(timeDifference / 3600)
-//               let days = Int(timeDifference / (3600 * 24))
-//               let weeks = Int(timeDifference / (3600 * 24 * 7))
-//               let months = Int(timeDifference / (3600 * 24 * 30))
-//
-//               let timeAgoString: String
-//               if months > 0 {
-//                   timeAgoString = "\(months) month\(months > 1 ? "s" : "") ago"
-//               } else if weeks > 0 {
-//                   timeAgoString = "\(weeks) week\(weeks > 1 ? "s" : "") ago"
-//               } else if days > 0 {
-//                   timeAgoString = "\(days) day\(days > 1 ? "s" : "") ago"
-//               } else if hours > 0 {
-//                   timeAgoString = "\(hours) hour\(hours > 1 ? "s" : "") ago"
-//               } else {
-//                   timeAgoString = "just now"
-//               }
-//
-//               timePosted.text = timeAgoString
-//           } else {
-//               // Handle the case when the publishedAt string cannot be parsed into a Date object
-//               timePosted.text = "Invalid Date"
-//           }
+        let truncatedText = truncateText(text: nameLabel.text ?? "", maxCharacter: maxCharacter)
+        nameLabel.text = truncatedText
         
+        //making the "last published" to show "1 hour ago", etc
         let timeAgoString = NewsLastFetchedUtility.calculateTimeAgo(from: viewModel.publishedAt)
         timePosted.text = timeAgoString
         
@@ -214,5 +189,14 @@ class NewsTableViewCell: UITableViewCell {
             }.resume()
         }
     }
+    
+    private func truncateText(text: String, maxCharacter: Int) -> String {
+        if text.count > maxCharacter {
+            return String(text.prefix(maxCharacter)) + ".." //Turncate text if it exceeds maximum character limit
+        } else {
+            return text
+        }
+    }
+    
 }
 
